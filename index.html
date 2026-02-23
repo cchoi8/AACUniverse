@@ -1,175 +1,203 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Welcome to AACUniverse!/title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to AACUniverse!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-	* {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-	
-	body, html {
-        width: 100%;
-        font-family: 'Montserrat', sans-serif; 
-        background-color: #000000; 
-        scroll-behavior: smooth;
-        overflow-x: hidden;
-    }
+        body, html {
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #000000;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
 
-    header {
-        width: 100%;
-        height: 30px;
-        background-color: #2C524B;
-        border-bottom: 1px solid #2C524B;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
+        header {
+            width: 100%;
+            height: 25px;
+            background-color: #2C524B;
+            border-bottom: 1px solid #2C524B;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
 
-    .logo {
-        color: #B5BCF3 !important;
-    	font-weight: bold;
-        margin-left: 20px;
-        letter-spacing: 1px;
-        text-decoration: none;
-        font-size: 15px;
-        //text-transform: uppercase;
-    }
+        .logo {
+            color: #B5BCF3 !important;
+            font-weight: bold;
+            margin-left: 20px;
+            letter-spacing: 2px;
+            text-decoration: none;
+            font-size: 15px;
+        }
 
-    nav { margin-right: 15px; }
-    nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
-    nav ul li { margin-left: 50px; }
-    nav ul li a {
-        color: #FFF4EA;
-        text-decoration: none;
-        font-size: 10px;
-        font-weight: bold;
-        letter-spacing: 2px;
-        transition: all 0.3s linear;
-    }
-    nav ul li a:hover { color: #2C9AB7; }
+        nav { margin-right: 5px; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a {
+            color: #F1FF5E;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s linear;
+        }
+        nav ul li a:hover { color: #2C9AB7; }
+		
+.scroll-indicator {
+    position: absolute;
+    top: 54%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #F1FF5E;
+    z-index: 10;
+    animation: combined-bounce 8s infinite ease-in-out; 
+}
 
-    .aac-gallery {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
+.scroll-indicator span {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 0px;
+    margin-bottom: 1px;
+    text-shadow: 0 0 50px rgba(0,0,0,1);
+}
 
-    .aac-gallery img {
-        width: 100%;
-        height: auto;
-        display: block;
-        margin: 0;
-        padding: 0;
-        border: none;
-    }
+.arrow {
+    width: 30px;
+    height: 30px;
+    border-right: 5px solid #F1FF5E;
+    border-bottom: 5px solid #F1FF5E;
+    transform: rotate(45deg);
+    margin: 0 auto;
+}
 
-    .video-container {
-        position: relative;
-        width: 100%;
-        padding-bottom: 56.25%; 
-        height: 0;
-        overflow: hidden;
-        background-color: #000;
-    }
+@keyframes combined-bounce {
+    0% { transform: translate(-50%, -80%); }
+    30% { transform: translate(-50%, -15%); } 
+    80% { transform: translate(-50%, -80%); } 
+    100% { transform: translate(-50%, -80%); }
+}
+        	
+        .aac-gallery {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
 
-    .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
+        .aac-gallery img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: none;
+        }
 
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
 
-	#aac, #home, #video, #about {
-        scroll-margin-top: 40px; 
-        width: 100%;
-    }
-	
-    .copyright {
-        text-align: center;
-        padding: 10px 0;
-        background-color: #7eacb5;
-        color: #FFFFFF;
-        //text-transform: uppercase;
-        font-weight: lighter;
-        letter-spacing: 1px;
-        font-size: 8px;
-    	}
-</style>
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: none;
+        }
+
+        #aac, #home, #video, #about {
+            scroll-margin-top: -55px;
+            width: 100%;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #7eacb5;
+            color: #FFFFFF;
+            letter-spacing: 1px;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 
 <body>
-
-    <header> 
+    <header>
         <a href="#aac" class="logo">AACUniverse</a>
         <nav>
-    <ul>
-        <li><a href="#home">What is AACUniverse?</a></li>
-        <li><a href="#about">About Us</a></li> 
-		<li><a href="#video">Video</a></li> 
-        <li><a href="mailto:cchoi8@albany.edu">Contact</a></li>
-    </ul>
-</nav>
+            <ul>
+                <li><a href="#home">What is AACUniverse?</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#video">Video</a></li>
+            </ul>
+        </nav>
     </header>
 
-<div class="aac-gallery">
-    <div id="aac">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_01.png" alt="Page 01">
-    </div>
+    <div class="aac-gallery">
+        <div id="aac" style="position: relative;">
+            <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_01.jpg" alt="Page 01">
+            <div class="scroll-indicator">
+                <span>Scroll Down for More </span>
+                <div class="arrow"></div>
+            </div>
+        </div>
 
-  <div class="video-container" id="video">
-    <iframe src="https://www.youtube.com/embed/PJUqVdfHAuo?autoplay=1&mute=1&loop=1&playlist=PJUqVdfHAuo&rel=0" 
-            title="YouTube video player" 
-            allowfullscreen>
-    </iframe>
-</div>
-	
- <div id="home">
+        <div class="video-container" id="video">
+            <iframe src="https://www.youtube.com/embed/PJUqVdfHAuo?autoplay=1&mute=1&loop=1&playlist=PJUqVdfHAuo&rel=0" 
+                    title="YouTube video player" allowfullscreen>
+            </iframe>
+        </div>
+
+        <div id="home">
             <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_02.jpg" alt="Page 02">
         </div>
-	
-	
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_03.jpg" alt="AACUniverse 03">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_04.jpg" alt="AACUniverse 04">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_05.jpg" alt="AACUniverse 05">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_06.jpg" alt="AACUniverse 06">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_07.jpg" alt="AACUniverse 07">
-	
-<div id="about">
+
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_03.jpg" alt="Page 03">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_04.jpg" alt="Page 04">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_05.jpg" alt="Page 05">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_06.jpg" alt="Page 06">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_07.jpg" alt="Page 07">
+
+        <div id="about">
             <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_08.jpg" alt="Page 08">
         </div>
-	
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_09.jpg" alt="AACUniverse 09">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_10.jpg" alt="AACUniverse 10">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_11.jpg" alt="AACUniverse 11">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_12.jpg" alt="AACUniverse 12">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_13.jpg" alt="AACUniverse 13">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_14.jpg" alt="AACUniverse 14">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_15.jpg" alt="AACUniverse 15">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_16.jpg" alt="AACUniverse 16">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_17.jpg" alt="AACUniverse 17">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_18.jpg" alt="AACUniverse 18">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_19.jpg" alt="AACUniverse 19">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_20.jpg" alt="AACUniverse 20">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_21.jpg" alt="AACUniverse 21">
-        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_22.jpg" alt="AACUniverse 22">
+
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_09.jpg" alt="Page 09">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_10.jpg" alt="Page 10">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_11.jpg" alt="Page 11">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_12.jpg" alt="Page 12">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_13.jpg" alt="Page 13">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_14.jpg" alt="Page 14">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_15.jpg" alt="Page 15">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_16.jpg" alt="Page 16">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_17.jpg" alt="Page 17">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_18.jpg" alt="Page 18">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_19.jpg" alt="Page 19">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_20.jpg" alt="Page 20">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_21.jpg" alt="Page 21">
+        <img src="https://raw.githubusercontent.com/cchoi8/AACUniverse/main/AACUniverse_Page_22.jpg" alt="Page 22">
     </div>
 
-    <div class="copyright">&copy; 2026 - <strong>AACUniverse Team (Chanhee Choi, Youna Jung, Yoosun Chung and Sojung Kim) </strong></div>
-
+    <div class="copyright">
+        &copy; 2026 <strong>AACUniverse Team (Chanhee Choi, Youna Jung, Yoosun Chung and Sojung Kim)</strong><br>
+        For any inquiries, please contact <a href="mailto:cchoi8@albany.edu" style="color: #ffffff; text-decoration: underline;">cchoi8@albany.edu</a>
+    </div>
 </body>
-
 </html>
-
